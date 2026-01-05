@@ -11,7 +11,8 @@ export default function Study() {
 
   const playSound = useCallback(() => {
     // Create a simple beep sound using Web Audio API
-    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
     const audioContext = new AudioContextClass();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -45,6 +46,8 @@ export default function Study() {
         clearInterval(intervalRef.current);
       }
       
+      // Timer completion - state updates are intentional and necessary
+      /* eslint-disable react-hooks/set-state-in-effect */
       if (!isBreak) {
         setCompletedSessions(prev => prev + 1);
         setIsBreak(true);
@@ -56,6 +59,7 @@ export default function Study() {
         setIsActive(false);
         playSound();
       }
+      /* eslint-enable react-hooks/set-state-in-effect */
     }
 
     return () => {
