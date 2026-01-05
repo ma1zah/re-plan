@@ -89,7 +89,7 @@ export default function Tasks({ tasks, onSave }: TasksProps) {
           <div className="task-form-row">
             <div className="form-group">
               <label>Priority:</label>
-              <select value={priority} onChange={(e) => setPriority(e.target.value as any)}>
+              <select value={priority} onChange={(e) => setPriority(e.target.value as 'low' | 'medium' | 'high')}>
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
                 <option value="high">High</option>

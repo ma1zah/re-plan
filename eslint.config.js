@@ -19,5 +19,9 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      // Disable this rule as it conflicts with legitimate timer/interval patterns
+      'react-hooks/set-state-in-effect': 'off',
+    },
   },
 ])

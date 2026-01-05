@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import Dashboard from './components/Dashboard';
@@ -11,15 +11,9 @@ import { getNotes, saveNotes, getTasks, saveTasks, getScheduleEvents, saveSchedu
 
 function App() {
   const [currentView, setCurrentView] = useState<View>('dashboard');
-  const [notes, setNotes] = useState<Note[]>([]);
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [events, setEvents] = useState<ScheduleEvent[]>([]);
-
-  useEffect(() => {
-    setNotes(getNotes());
-    setTasks(getTasks());
-    setEvents(getScheduleEvents());
-  }, []);
+  const [notes, setNotes] = useState<Note[]>(getNotes);
+  const [tasks, setTasks] = useState<Task[]>(getTasks);
+  const [events, setEvents] = useState<ScheduleEvent[]>(getScheduleEvents);
 
   const handleNotesUpdate = (updatedNotes: Note[]) => {
     setNotes(updatedNotes);
